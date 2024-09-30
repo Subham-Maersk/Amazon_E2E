@@ -30,8 +30,7 @@ namespace Services
                     var responseBody = await response.Content.ReadAsStringAsync();
                     var jsonResponse = JObject.Parse(responseBody);
                     string jwtToken = jsonResponse["data"]?["jwt"]?.ToString();
-                    Console.WriteLine("Login Successful");
-                    Console.WriteLine("JWT Token: " + jwtToken);
+                    Console.WriteLine("Login Successful :JWT Token is " + jwtToken);
                     return jwtToken;
                 }
                 else

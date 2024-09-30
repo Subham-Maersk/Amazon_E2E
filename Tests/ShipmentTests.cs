@@ -8,9 +8,8 @@ namespace Tests
     [TestFixture]
     public class ShipmentTests
     {
-        private string _jwtToken;
-        private string _manifestNumber = "Testing_20240_32"; 
-        private string _customerIdentifier = "AMAEU0001"; 
+        private string jwtToken;
+        private string manifestNumber = "Testing_20240_32", customerIdentifier = "AMAEU0001"; 
 
         [SetUp]
         public async Task Setup()
@@ -19,26 +18,25 @@ namespace Tests
             string email = credentials["email"].ToString();
             string password = credentials["password"].ToString();
 
-            _jwtToken = await AuthService.GetJwtToken(email, password);
-            Assert.IsNotNull(_jwtToken, "Failed to retrieve JWT token");
+            jwtToken = await AuthService.GetJwtToken(email, password);
+            Assert.IsNotNull(jwtToken, "Failed to retrieve JWT token");
         }
 
         [Test]
         public async Task TestShipmentApiAndValidationFlow()
         {
-            var response = await ShipmentService.CallShipmentApi(_jwtToken, _manifestNumber, _customerIdentifier, "Test_data/AMS_LAX_2709.json");
+            var response = await ShipmentService.CallShipmentApi(jwtToken, manifestNumber, customerIdentifier, "Test_data/AMS_LAX_2709.json");
 
             Assert.IsNotNull(response, "Manifest Number is already used.");
 
-            var validationResponse = await ShipmentService.ValidateManifestCreation(_jwtToken, _manifestNumber, _customerIdentifier);
+            var validationResponse = await ShipmentService.ValidateManifestCreation(jwtToken, manifestNumber, customerIdentifier);
             Assert.IsNotNull(validationResponse, "No response received from manifest validation API");
 
             while (validationResponse["results"]?[0]?["status"]?.ToString() == "PreProcessing")
             {
-                TestContext.WriteLine("Shipment is in PreProcessing, waiting for 30 seconds...");
                 await Task.Delay(30000); 
 
-                validationResponse = await ShipmentService.ValidateManifestCreation(_jwtToken, _manifestNumber, _customerIdentifier);
+                validationResponse = await ShipmentService.ValidateManifestCreation(jwtToken, manifestNumber, customerIdentifier);
                 Assert.IsNotNull(validationResponse, "No response received from validation API after retry.");
             }
 

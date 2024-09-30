@@ -14,8 +14,8 @@
       "type": "Ship_From"
     },
     "warehouseLocation": "ABE2",
-    "transmissionDate": "2024-09-27T18:30:10.794Z",
-    "shipDate": "2024-09-27T18:30:10.794Z",
+    "transmissionDate": "2024-09-30T18:30:10.794Z",
+    "shipDate": "2024-09-30T18:30:10.794Z",
     "billingType": "PREPAID",
     "totalShipmentQuantity":1,
     "totalShipmentQuantityUnit": "EA",
@@ -34,7 +34,7 @@
     "carrierAccountId": "ABCDFRT",
     "shipments": [
       {
-        "orderNumber": "TSTAMZEU90001_2709012",
+        "orderNumber": "TSTAMZEU90001_12345",
         "marketPlaceId": "1",
         "termsOfSale": "DDP",
         "freightCharge": 7,
@@ -77,7 +77,7 @@
           "weightUnit": "LB",
           "weightCalculateMethod": "Weight",
           "shipmentMethod": "ABC_INT_EXPD",
-          "deliveryDate": "2024-09-27T15:30:10.796Z",
+          "deliveryDate": "2024-09-30T15:30:10.796Z",
           "shipSort": "EWR8-SKNY-ILTV-IL-EXP",
           "shipOption": "std-intl-us-eur2-ag",
           "zone": "ILTV_TO_IL",
