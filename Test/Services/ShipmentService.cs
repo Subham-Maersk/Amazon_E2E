@@ -45,7 +45,7 @@ namespace Services
                     else
                     {
                         var errorResponseBody = await response.Content.ReadAsStringAsync();
-                        return null;
+                        return JObject.Parse(errorResponseBody);
                     }
                 }
             }
