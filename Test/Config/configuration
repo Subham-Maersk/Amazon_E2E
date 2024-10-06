@@ -1,0 +1,57 @@
+using System;
+ 
+public class EnvironmentConfig
+{
+    public string Environment { get; set; }
+    public string BaseURL { get; set; }
+ 
+    public static EnvironmentConfig GetEnvironment()
+    {
+        string environment = Environment.GetEnvironmentVariable("ENVIRONMENT");
+        string baseURL;
+ 
+        switch (environment)
+        {
+            case "PMS_E2E":
+                baseURL = "https://as-indicina-ncus-sandbox.azurewebsites.net/api/v1/Shipment/Manifest";
+                break;
+		   case "MLO_E2E":
+              baseUrl ="https://label-generator-service.maersk-digital.dev/api/v1/label/generate" ;
+              break;			  
+            case "MSP_E2E":
+                baseURL = "https://sorting-service.maersk-digital.dev/api/container";
+                break;
+
+            case "CUSTOM_E2E":
+                baseURL = "https://internalportal-test.b2ceurope.eu/datatable/international_customs";
+                break;
+
+            case "MTS_E2E":
+                baseURL = "https://mec-carrier-tracking-usps-api-dev.maersk-digital.dev/api/v4.0/Tracking";
+                break;
+
+            case "GTS_E2E":
+                baseURL = "https://wwa-globaltrackingsolution-weu-staging.azurewebsites.net/api/Tracking/ShipmentTracking";
+                break;
+            default:
+               baseURL = "https://as-indicina-ncus-sandbox.azurewebsites.net/api/v1/Shipment/Manifest";
+                break;
+        }
+ 
+        return new EnvironmentConfig
+        {
+            Environment = environment,
+            BaseURL = baseURL
+        };
+    }
+}
+ 
+class Program
+{
+    static void Main(string[] args)
+    {
+        EnvironmentConfig config = EnvironmentConfig.GetEnvironment();
+        Console.WriteLine($"Environment: {config.Environment}");
+		
+	}
+}

@@ -29,5 +29,18 @@ namespace Utils
             string trackingNumber = jsonContent["shipments"]?[0]?["package"]?["trackingNumber"]?.ToString();
             return trackingNumber;
         }
+
+        // New method to retrieve MTS data
+        public static JObject GetMtsData(string filePath)
+        {
+            return ReadJsonFile(filePath);
+        }
+
+        // Example method to extract specific fields for MTS (if needed)
+        public static string GetMtsField(string filePath, string fieldName)
+        {
+            var jsonContent = GetMtsData(filePath);
+            return jsonContent[fieldName]?.ToString();
+        }
     }
 }
