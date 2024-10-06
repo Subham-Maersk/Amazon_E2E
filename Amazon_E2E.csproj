@@ -8,19 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Test_data\credentials.json">
+    <None Update="Test_Access_Data_Layer\credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Test_data\gts_credentials.json"> 
+    <None Update="Test_Access_Data_Layer\gts_credentials.json"> 
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Test_data\AMS_LAX_2709.json">
+    <None Update="Test_Access_Data_Layer\AMS_LAX_2709.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Test_data\labelRequest.json"> 
+    <None Update="Test_Access_Data_Layer\labelRequest.json"> 
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Test_data\sort_credentials.json">
+    <None Update="Test_Access_Data_Layer\sort_credentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test_Access_Data_Layer\mts_credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
 

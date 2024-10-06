@@ -1,0 +1,29 @@
+{
+
+    "quantity": 1,
+  
+    "format": "6x4",
+  
+    "extension": "zpl",
+  
+    "template": "MaerskContainerLabelTemplate",
+  
+    "printerDpis": 203,
+  
+    "localDateTime": "2024-10-01T18:40:00.531Z",
+  
+    "content": {
+  
+      "originCode": "AMS",
+  
+      "destinationCode": "LAX",
+  
+      "destination": "Los Angeles",
+  
+      "lastMileCarrier": "",
+  
+      "notes": "Demo Label"
+  
+    }
+  
+  }

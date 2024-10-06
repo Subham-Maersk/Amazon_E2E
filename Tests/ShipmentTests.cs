@@ -13,40 +13,41 @@ namespace Tests
         private string _jwtToken;
         private string _gtsJwtToken;
         private string _sortJwtToken; 
-        private string _manifestNumber = "Testing_20240_91";
+        private string _manifestNumber = "Testing_20240_117";
         private string _customerIdentifier = "AMAEU0001";
         private string _apiKey = "VkB3eHRnellwRWdBKmY0VlZ3aCpWSE5yQ2dwZTlaOUdqanhHNlBVd3BLeTdWaExweHcjOW8mWHpWRUFoSDNXMzk1cnBjNzVIQlJUaiZ1Q3F1Xk1QJE12dW4hcGlhY2I5aDNhY01WaFJWdDZhbkUlJHB1YXQmI2lDOV51V012SFU=";
+        private string _mtsApiKey ="F2C03C5A-AAC8-44E1-AFE2-02EE5C7B62DB";
         private LabelGeneratorService _labelGeneratorService;
         private SortService _sortService;
+        private MtsService _mtsService;
+        private string _apiUrl = "https://mec-carrier-tracking-usps-api-dev.maersk-digital.dev/api/v4.0/Tracking"; // Update this with the actual MTS API URL
 
         [SetUp]
         public async Task Setup()
         {
-            var credentials = FileUtils.GetCredentials("Test_data/credentials.json");
+            var credentials = FileUtils.GetCredentials("Test_Access_Data_Layer/credentials.json");
             string email = credentials["email"].ToString();
             string password = credentials["password"].ToString();
 
-            // Retrieve main JWT token
             _jwtToken = await AuthService.GetJwtToken(email, password);
             Assert.IsNotNull(_jwtToken, "Failed to retrieve JWT token");
 
-            // Initialize SortService and retrieve sorting JWT token
             _sortService = new SortService();
-            var sortCredentials = FileUtils.GetCredentials("Test_data/sort_credentials.json");
+            var sortCredentials = FileUtils.GetCredentials("Test_Access_Data_Layer/sort_credentials.json");
             string sortEmail = sortCredentials["email"].ToString();
             string sortPassword = sortCredentials["password"].ToString();
             _sortJwtToken = await _sortService.GetSortingJwtToken(sortEmail, sortPassword);
             Assert.IsNotNull(_sortJwtToken, "Failed to retrieve Sorting JWT token");
             TestContext.WriteLine("Sort JWT Token: " + _sortJwtToken);
 
-
             _labelGeneratorService = new LabelGeneratorService();
+            _mtsService = new MtsService(); 
         }
 
         [Test]
         public async Task TestShipmentApiAndValidationFlow()
         {
-            var response = await ShipmentService.CallShipmentApi(_jwtToken, _manifestNumber, _customerIdentifier, "Test_data/AMS_LAX_2709.json");
+            var response = await ShipmentService.CallShipmentApi(_jwtToken, _manifestNumber, _customerIdentifier, "Test_Access_Data_Layer/AMS_LAX_2709.json");
             Assert.IsNotNull(response, "Manifest Number is already used.");
 
             var validationResponse = await ShipmentService.ValidateManifestCreation(_jwtToken, _manifestNumber, _customerIdentifier);
@@ -64,7 +65,7 @@ namespace Tests
             Assert.AreEqual("Processed", validationResponse["results"]?[0]?["status"]?.ToString(), "Shipment processing failed.");
             TestContext.WriteLine("Shipment processed successfully.");
 
-            var jsonFilePath = "Test_data/AMS_LAX_2709.json";
+            var jsonFilePath = "Test_Access_Data_Layer/AMS_LAX_2709.json";
             var jsonContent = FileUtils.ReadJsonFile(jsonFilePath);
             TestContext.WriteLine("JSON Content: " + jsonContent.ToString());
 
@@ -76,7 +77,7 @@ namespace Tests
             Assert.IsNotNull(finalMileResponse, "Failed to retrieve final mile tracking number.");
             TestContext.WriteLine("Final Mile Tracking Number: " + finalMileResponse["finalMileTracking"]);
 
-            _gtsJwtToken = await GtsAuthService.GetJwtTokenFromGts("Test_data/gts_credentials.json");
+            _gtsJwtToken = await GtsAuthService.GetJwtTokenFromGts("Test_Access_Data_Layer/gts_credentials.json");
             Assert.IsNotNull(_gtsJwtToken, "Failed to retrieve GTS JWT token.");
 
             string trackingNumber = FileUtils.GetTrackingNumber(jsonFilePath);
@@ -88,7 +89,7 @@ namespace Tests
             Assert.IsNotNull(packageBarcode, "Failed to retrieve PackageBarcode from GTS tracking API.");
             TestContext.WriteLine("PackageBarcode: " + packageBarcode);
 
-            var labelResponse = await _labelGeneratorService.GenerateLabelAsync("Test_data/labelRequest.json", _jwtToken);
+            var labelResponse = await _labelGeneratorService.GenerateLabelAsync("Test_Access_Data_Layer/labelRequest.json", _jwtToken);
             Assert.IsNotNull(labelResponse, "Failed to generate label.");
             TestContext.WriteLine("Label Generation Response: " + labelResponse.ToString());
 
@@ -99,6 +100,10 @@ namespace Tests
             var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
             Assert.IsNotNull(assignResponse, "Failed to assign container to parcels.");
             TestContext.WriteLine("Container Assignment Response: " + assignResponse);
+
+            var mtsResponse = await MtsService.UpdateDataAsync(_apiUrl, _mtsApiKey, "Test_Access_Data_Layer/mts_credentials.json");
+            Assert.IsNotNull(mtsResponse, "Failed to call MTS service.");
+            TestContext.WriteLine("MTS Service Response: " + mtsResponse);
         }
 
         private string ExtractIdFromLabelResponse(JToken labelResponse)
@@ -107,17 +112,14 @@ namespace Tests
             {
                 foreach (var item in labelArray)
                 {
-                    var url = item.ToString();
-                    if (url.Contains("amslax"))
+                    string id = item["id"]?.ToString();
+                    if (!string.IsNullOrEmpty(id) && id.StartsWith("amslax", StringComparison.OrdinalIgnoreCase))
                     {
-                        var startIndex = url.IndexOf("amslax");
-                        var endIndex = url.IndexOf('.', startIndex); 
-                        if (endIndex == -1) endIndex = url.Length; 
-                        return url.Substring(startIndex, endIndex - startIndex);
+                        return id;
                     }
                 }
             }
-            return null; 
+            return null;
         }
     }
 }
