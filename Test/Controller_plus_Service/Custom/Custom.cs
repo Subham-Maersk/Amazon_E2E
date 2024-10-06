@@ -24,11 +24,39 @@ namespace Amazon_E2E_copy.Tests
         public async Task LaunchGoogleTestAsync()
         {
             _page = await _browser.NewPageAsync();
-            await _page.GotoAsync("https://www.google.com"); 
-            Assert.AreEqual("Google", await _page.TitleAsync()); 
+           await _page.GotoAsync("https://internalportal-test.b2ceurope.eu/datatable/international_customs"); 
+           // Assert.AreEqual("Google", await _page.TitleAsync()); 
 
-            
-            //await Task.Delay(20 * 60 * 1000);
+           await _page.FillAsync("//input[@id='username']", "adarsh.k@maersk.com"); 
+      await _page.FillAsync("//input[@id='password']", "ho6!NX4x2edb%S8CeJgW2t"); 
+      await _page.ClickAsync("//button[@type='submit']");
+      
+      await Task.Delay(1200);
+      await _page.ClickAsync("//a[text()='Customs Tools']");
+      await _page.ClickAsync("(//a[text()='International Customs'])[1]");
+      await _page.ClickAsync("//button[@class='dt-button buttons-create']");
+      await _page.ClickAsync("(//button[@class='editor-datetime-button editor-datetime-day'])[7]");
+      await _page.ClickAsync("//input[@id='DTE_Field_InternationalCustoms-ArrivalDate']");
+      await _page.ClickAsync("(//button[@class='editor-datetime-button editor-datetime-day'])[7]");
+     var dropdownSelector = "//select[@id='DTE_Field_InternationalCustoms-LKAirportOriginID']"; // This is the ID or selector of the <select> element
+
+        await _page.Locator(dropdownSelector).SelectOptionAsync(new[] { "AMS (Netherlands)" });
+
+        var selectedValue = await _page.Locator(dropdownSelector).InputValueAsync();
+        Console.WriteLine($"Selected value: {selectedValue}");
+        await Task.Delay(1200);
+      
+         var dropdownSelector2 = "//select[@id='DTE_Field_InternationalCustoms-LKAirportDestinationID']"; // This is the ID or selector of the <select> element
+        await _page.Locator(dropdownSelector2).SelectOptionAsync(new[] { "JFK (United States)" });
+        var selectedValue2 = await _page.Locator(dropdownSelector2).InputValueAsync();
+        Console.WriteLine($"Selected value2: {selectedValue2}");
+         await Task.Delay(1200);
+            await _page.ClickAsync("//button[text()='Create']']");
+            await Task.Delay(5 * 60 * 1000);
+              await Task.Delay(5 * 60 * 1000);
+                await Task.Delay(5 * 60 * 1000);
+                  await Task.Delay(5 * 60 * 1000);
+
         }
 
         [TearDown]
