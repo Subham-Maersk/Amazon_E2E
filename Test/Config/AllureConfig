@@ -1,0 +1,13 @@
+using Allure.Commons;
+
+namespace TestProject
+{
+    public class AllureConfig
+    {
+        public static void Setup()
+        {
+            AllureLifecycle.Instance.CleanupResultDirectory();
+            AllureLifecycle.Instance.SetAllureEnvironment("Browser", "Chromium");
+        }
+    }
+}
