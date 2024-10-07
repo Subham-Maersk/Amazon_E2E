@@ -65,6 +65,14 @@
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.2.1, )"
+            },
+            "SpecFlow": {
+              "target": "Package",
+              "version": "[3.9.74, )"
+            },
+            "SpecFlow.NUnit": {
+              "target": "Package",
+              "version": "[3.9.74, )"
             }
           },
           "imports": [

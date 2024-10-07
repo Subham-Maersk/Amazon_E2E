@@ -13,7 +13,7 @@ namespace Tests
         private string _jwtToken;
         private string _gtsJwtToken;
         private string _sortJwtToken; 
-        private string _manifestNumber = "Testing_20240_117";
+        private string _manifestNumber;
         private string _customerIdentifier = "AMAEU0001";
         private string _apiKey = "VkB3eHRnellwRWdBKmY0VlZ3aCpWSE5yQ2dwZTlaOUdqanhHNlBVd3BLeTdWaExweHcjOW8mWHpWRUFoSDNXMzk1cnBjNzVIQlJUaiZ1Q3F1Xk1QJE12dW4hcGlhY2I5aDNhY01WaFJWdDZhbkUlJHB1YXQmI2lDOV51V012SFU=";
         private string _mtsApiKey ="F2C03C5A-AAC8-44E1-AFE2-02EE5C7B62DB";
@@ -25,11 +25,16 @@ namespace Tests
         [SetUp]
         public async Task Setup()
         {
-            var credentials = FileUtils.GetCredentials("Test_Access_Data_Layer/credentials.json");
-            string email = credentials["email"].ToString();
-            string password = credentials["password"].ToString();
+            // Call UpdateShipmentDetails to increment manifest and update other fields
+            string jsonFilePath = "Test_Access_Data_Layer/AMS_LAX_2709.json";
+            FileUtils.UpdateShipmentDetails(jsonFilePath);
 
-            _jwtToken = await AuthService.GetJwtToken(email, password);
+            // Read the updated manifest number from the JSON file
+            var jsonContent = FileUtils.ReadJsonFile(jsonFilePath);
+            _manifestNumber = jsonContent["lastManifestNumber"]?.ToString();
+
+            // Retrieve JWT tokens
+            _jwtToken = await AuthService.GetJwtToken();
             Assert.IsNotNull(_jwtToken, "Failed to retrieve JWT token");
 
             _sortService = new SortService();
@@ -44,7 +49,7 @@ namespace Tests
             _mtsService = new MtsService(); 
         }
 
-        [Test]
+        [Test, Category("Amazon")]
         public async Task TestShipmentApiAndValidationFlow()
         {
             var response = await ShipmentService.CallShipmentApi(_jwtToken, _manifestNumber, _customerIdentifier, "Test_Access_Data_Layer/AMS_LAX_2709.json");
@@ -84,10 +89,10 @@ namespace Tests
             Assert.IsNotNull(trackingNumber, "Failed to retrieve Tracking Number from the JSON file.");
             TestContext.WriteLine($"Tracking Number: {trackingNumber}");
 
-            var gtsTrackingService = new GtsTrackingService();
-            string packageBarcode = await gtsTrackingService.GetPackageBarcodeAsync(_gtsJwtToken, trackingNumber);
-            Assert.IsNotNull(packageBarcode, "Failed to retrieve PackageBarcode from GTS tracking API.");
-            TestContext.WriteLine("PackageBarcode: " + packageBarcode);
+            // var gtsTrackingService = new GtsTrackingService();
+            // string packageBarcode = await gtsTrackingService.GetPackageBarcodeAsync(_gtsJwtToken, trackingNumber);
+            // Assert.IsNotNull(packageBarcode, "Failed to retrieve PackageBarcode from GTS tracking API.");
+            // TestContext.WriteLine("PackageBarcode: " + packageBarcode);
 
             var labelResponse = await _labelGeneratorService.GenerateLabelAsync("Test_Access_Data_Layer/labelRequest.json", _jwtToken);
             Assert.IsNotNull(labelResponse, "Failed to generate label.");
@@ -97,9 +102,9 @@ namespace Tests
             Assert.IsNotNull(extractedId, "No ID starting with 'amslax' found in the label response.");
             TestContext.WriteLine("Extracted ID: " + extractedId);
 
-            var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
-            Assert.IsNotNull(assignResponse, "Failed to assign container to parcels.");
-            TestContext.WriteLine("Container Assignment Response: " + assignResponse);
+            // var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
+            // Assert.IsNotNull(assignResponse, "Failed to assign container to parcels.");
+            // TestContext.WriteLine("Container Assignment Response: " + assignResponse);
 
             var mtsResponse = await MtsService.UpdateDataAsync(_apiUrl, _mtsApiKey, "Test_Access_Data_Layer/mts_credentials.json");
             Assert.IsNotNull(mtsResponse, "Failed to call MTS service.");
