@@ -16,14 +16,8 @@
   
       "originCode": "AMS",
   
-      "destinationCode": "LAX",
-  
-      "destination": "Los Angeles",
-  
-      "lastMileCarrier": "",
-  
-      "notes": "Demo Label"
-  
+      "sortCodeAlias": "AMS1",
+    "notes": "Demo Automation Label"
     }
   
   }
