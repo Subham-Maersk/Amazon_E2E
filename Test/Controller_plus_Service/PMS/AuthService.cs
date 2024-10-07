@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,12 @@ namespace Services
     public static class AuthService
     {
         private static readonly string loginUrl = "https://api-eclapi-ncus-sandbox.azurewebsites.net/api/v1/Login";
+        private static readonly string credentialsFilePath = Path.Combine("Test_Access_Data_Layer", "credentials.json");
 
-        public static async Task<string> GetJwtToken(string email, string password)
+        public static async Task<string> GetJwtToken()
         {
+            var (email, password) = ReadCredentials();
+
             using (HttpClient client = new HttpClient())
             {
                 var loginData = new
@@ -40,6 +44,16 @@ namespace Services
                     return null;
                 }
             }
+        }
+
+        private static (string email, string password) ReadCredentials()
+        {
+            string json = File.ReadAllText(credentialsFilePath);
+            var jsonObject = JObject.Parse(json);
+            string email = jsonObject["email"]?.ToString();
+            string password = jsonObject["password"]?.ToString();
+
+            return (email, password);
         }
     }
 }
