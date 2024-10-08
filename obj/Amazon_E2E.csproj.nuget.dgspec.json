@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Allure.Commons": {
+              "target": "Package",
+              "version": "[2.3.61.1, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.6.3, )"
@@ -61,6 +65,10 @@
             "NUnit": {
               "target": "Package",
               "version": "[3.13.3, )"
+            },
+            "NUnit.Allure": {
+              "target": "Package",
+              "version": "[0.2.3, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",

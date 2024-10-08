@@ -42,7 +42,7 @@ namespace Services
                 destinationSortCenterId = 12,
                 originSortCenterId = 201,
                 parcelsCodes = new[] { packageBarcode },
-                localDateTime = "2024-08-29T18:40:00.531Z",
+                localDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
                 statusCountry = "CN",
                 sortCenterName = "ALMERE (AMS)",
                 routingEnabled = true

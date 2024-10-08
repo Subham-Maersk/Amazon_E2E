@@ -2,6 +2,26 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Allure.Commons/2.3.61.1": {
+        "type": "package",
+        "dependencies": {
+          "MimeTypesMap": "1.0.3",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Allure.Commons.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Allure.Commons.dll": {}
+        },
+        "contentFiles": {
+          "contentFiles/any/netstandard2.0/allureConfig.json": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
       "BoDi/1.5.0": {
         "type": "package",
         "compile": {
@@ -434,6 +454,18 @@
           "build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props": {}
         }
       },
+      "MimeTypesMap/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/MimeTypesMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/MimeTypesMap.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -488,6 +520,19 @@
         },
         "build": {
           "build/NUnit.props": {}
+        }
+      },
+      "NUnit.Allure/0.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Allure.Commons": "2.3.61.1",
+          "NUnit": "3.9.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/NUnit.Allure.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NUnit.Allure.dll": {}
         }
       },
       "NUnit3TestAdapter/4.2.1": {
@@ -1747,6 +1792,22 @@
     }
   },
   "libraries": {
+    "Allure.Commons/2.3.61.1": {
+      "sha512": "A9yx26IPIVkj69PM3tR8Jq/DJ3FRtfEJ8KdmScpa595cIusIbjYQJ/b8cpnZIJvwnYR5coXdoDmLZGmMnhTy1Q==",
+      "type": "package",
+      "path": "allure.commons/2.3.61.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "allure.commons.2.3.61.1.nupkg.sha512",
+        "allure.commons.nuspec",
+        "content/allureConfig.json",
+        "contentFiles/any/net45/allureConfig.json",
+        "contentFiles/any/netstandard2.0/allureConfig.json",
+        "lib/net45/Allure.Commons.dll",
+        "lib/netstandard2.0/Allure.Commons.dll"
+      ]
+    },
     "BoDi/1.5.0": {
       "sha512": "CzIPzdIAFSd2zuLxI+0K9s48Qv3HQDbWiApn9h96j284rHs2bSPrn/PMca3mi4q3xLSEqOp+GUJ6+mXDD9prKg==",
       "type": "package",
@@ -2499,6 +2560,20 @@
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
+    "MimeTypesMap/1.0.3": {
+      "sha512": "YP1BGuPl+EMPf2++puxTXiDvrwsW38/ORGCm2u17YI3h8qejz2PyGrn4nWFpIz30dAbZkdAEjxD0N+5gMWNhbw==",
+      "type": "package",
+      "path": "mimetypesmap/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/MimeTypesMap.dll",
+        "lib/net45/MimeTypesMap.dll",
+        "lib/netstandard1.3/MimeTypesMap.dll",
+        "mimetypesmap.1.0.3.nupkg.sha512",
+        "mimetypesmap.nuspec"
+      ]
+    },
     "NETStandard.Library/2.0.0": {
       "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
@@ -2693,6 +2768,19 @@
         "lib/netstandard2.0/nunit.framework.xml",
         "nunit.3.13.3.nupkg.sha512",
         "nunit.nuspec"
+      ]
+    },
+    "NUnit.Allure/0.2.3": {
+      "sha512": "KPVqJF/J9OKQ7QPwp9XLKmOdsdZoQ4ri+6JbVsJvyNPBTrURLIor4O0F8zd9E5pavG9LqLKGBGUbQ7mnPB1abQ==",
+      "type": "package",
+      "path": "nunit.allure/0.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/NUnit.Allure.dll",
+        "lib/netstandard2.0/NUnit.Allure.dll",
+        "nunit.allure.0.2.3.nupkg.sha512",
+        "nunit.allure.nuspec"
       ]
     },
     "NUnit3TestAdapter/4.2.1": {
@@ -6007,10 +6095,12 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Allure.Commons >= 2.3.61.1",
       "Microsoft.NET.Test.Sdk >= 17.6.3",
       "Microsoft.Playwright >= 1.47.0",
       "Microsoft.Playwright.NUnit >= 1.47.0",
       "NUnit >= 3.13.3",
+      "NUnit.Allure >= 0.2.3",
       "NUnit3TestAdapter >= 4.2.1",
       "SpecFlow >= 3.9.74",
       "SpecFlow.NUnit >= 3.9.74"
@@ -6061,6 +6151,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Allure.Commons": {
+            "target": "Package",
+            "version": "[2.3.61.1, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.6.3, )"
@@ -6076,6 +6170,10 @@
           "NUnit": {
             "target": "Package",
             "version": "[3.13.3, )"
+          },
+          "NUnit.Allure": {
+            "target": "Package",
+            "version": "[0.2.3, )"
           },
           "NUnit3TestAdapter": {
             "target": "Package",

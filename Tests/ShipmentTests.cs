@@ -25,15 +25,12 @@ namespace Tests
         [SetUp]
         public async Task Setup()
         {
-            // Call UpdateShipmentDetails to increment manifest and update other fields
             string jsonFilePath = "Test_Access_Data_Layer/AMS_LAX_2709.json";
             FileUtils.UpdateShipmentDetails(jsonFilePath);
 
-            // Read the updated manifest number from the JSON file
             var jsonContent = FileUtils.ReadJsonFile(jsonFilePath);
             _manifestNumber = jsonContent["lastManifestNumber"]?.ToString();
 
-            // Retrieve JWT tokens
             _jwtToken = await AuthService.GetJwtToken();
             Assert.IsNotNull(_jwtToken, "Failed to retrieve JWT token");
 
@@ -99,7 +96,7 @@ namespace Tests
             TestContext.WriteLine("Label Generation Response: " + labelResponse.ToString());
 
             string extractedId = ExtractIdFromLabelResponse(labelResponse);
-            Assert.IsNotNull(extractedId, "No ID starting with 'amslax' found in the label response.");
+            Assert.IsNotNull(extractedId, "No ID starting with 'ams' found in the label response.");
             TestContext.WriteLine("Extracted ID: " + extractedId);
 
             // var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
@@ -117,14 +114,17 @@ namespace Tests
             {
                 foreach (var item in labelArray)
                 {
-                    string id = item["id"]?.ToString();
-                    if (!string.IsNullOrEmpty(id) && id.StartsWith("amslax", StringComparison.OrdinalIgnoreCase))
+                    var url = item.ToString();
+                    if (url.Contains("ams"))
                     {
-                        return id;
+                        var startIndex = url.IndexOf("ams");
+                        var endIndex = url.IndexOf('.', startIndex); 
+                        if (endIndex == -1) endIndex = url.Length; 
+                        return url.Substring(startIndex, endIndex - startIndex);
                     }
                 }
             }
-            return null;
+            return null; 
         }
     }
 }
