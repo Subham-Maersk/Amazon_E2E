@@ -1,0 +1,13 @@
+{
+    "destinationCode": "",
+    "originCode": "AMS",
+    "destinationSortCenterId": 0,
+    "originSortCenterId": 201,
+    "parcelsCodes": [
+      "420941249205590366211300061171"
+    ],
+    "localDateTime": "2024-10-08T01:42:29.341Z",
+    "statusCountry": "NL",
+    "sortCenterName": "ALMERE (AMS)",
+    "routingEnabled": true
+  }
