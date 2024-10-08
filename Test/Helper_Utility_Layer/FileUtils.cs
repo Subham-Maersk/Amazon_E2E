@@ -48,7 +48,7 @@ namespace Utils
         {
             var jsonContent = ReadJsonFile(filePath);
 
-            string lastManifestNumber = jsonContent["lastManifestNumber"]?.ToString() ?? "Testing_20240_118";
+            string lastManifestNumber = jsonContent["lastManifestNumber"]?.ToString() ?? "Testing_20240_167";
             string baseManifest = "Testing_20240_"; // Fixed prefix
             int lastManifestIncrement = int.Parse(lastManifestNumber.Replace(baseManifest, "")); // Extract number part
 
