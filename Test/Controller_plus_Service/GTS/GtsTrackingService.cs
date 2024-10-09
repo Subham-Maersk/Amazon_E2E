@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Configuration; 
 
 namespace Services
 {
@@ -17,7 +18,9 @@ namespace Services
 
         public async Task<string> GetPackageBarcodeAsync(string gtsToken, string trackingNumber)
         {
-            string apiUrl = $"https://wwa-globaltrackingsolution-weu-staging.azurewebsites.net/api/Tracking/ShipmentTracking?TrackingNumber={trackingNumber}";
+            EnvironmentConfig.GetEnvironment("GTS_E2E");
+
+            string apiUrl = $"{EnvironmentConfig.BaseURL}?TrackingNumber={trackingNumber}";
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", gtsToken);
 

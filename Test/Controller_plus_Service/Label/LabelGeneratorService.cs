@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-
+using Configuration; 
 namespace Services
 {
     public class LabelGeneratorService
@@ -24,7 +24,7 @@ namespace Services
                 throw new Exception("Failed to read request body from JSON file.");
             }
 
-            string apiUrl = "https://label-generator-service.maersk-digital.dev/api/v1/label/generate";
+            string apiUrl = EnvironmentConfig.GetAllUrls()["MLO_E2E"];
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
 

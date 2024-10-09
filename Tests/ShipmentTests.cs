@@ -4,6 +4,7 @@ using Utils;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Configuration;
 
 namespace Tests
 {
@@ -20,7 +21,12 @@ namespace Tests
         private LabelGeneratorService _labelGeneratorService;
         private SortService _sortService;
         private MtsService _mtsService;
-        private string _apiUrl = "https://mec-carrier-tracking-usps-api-dev.maersk-digital.dev/api/v4.0/Tracking"; // Update this with the actual MTS API URL
+
+        //private string _apiUrl = $"{EnvironmentConfig.BaseURL}"; // Use MTS_E2E URL
+        private string _apiUrl = EnvironmentConfig.GetAllUrls()["MTS_E2E"]; 
+
+
+        //private string _apiUrl = "https://mec-carrier-tracking-usps-api-dev.maersk-digital.dev/api/v4.0/Tracking"; // Update this with the actual MTS API URL
 
         [SetUp]
         public async Task Setup()

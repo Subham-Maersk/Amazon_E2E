@@ -30,10 +30,8 @@ namespace Services
 
                 var response = await client.PutAsync(apiUrl, content);
 
-                // Log the request and response for debugging purposes
                 Console.WriteLine($"PUT Request to {apiUrl} with payload: {requestBodyString}");
 
-                // Check if the request was successful
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
@@ -51,7 +49,6 @@ namespace Services
             }
             catch (Exception ex)
             {
-                // Log the exception and rethrow it
                 Console.WriteLine($"An error occurred while calling MTS API: {ex.Message}");
                 throw;
             }

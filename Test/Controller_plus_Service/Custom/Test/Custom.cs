@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Microsoft.Playwright;
 using System.Threading.Tasks;
+using Configuration;
 
 namespace Amazon_E2E_copy.Tests
 {
@@ -9,10 +10,12 @@ namespace Amazon_E2E_copy.Tests
         private IPlaywright _playwright;
         private IBrowser _browser;
         private IPage _page;
+        private string _customUrl;
 
         [SetUp]
         public async Task Setup()
         {
+            _customUrl = EnvironmentConfig.GetAllUrls()["CUSTOM_E2E"];
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
@@ -24,7 +27,7 @@ namespace Amazon_E2E_copy.Tests
         public async Task LaunchGoogleTestAsync()
         {
             _page = await _browser.NewPageAsync();
-           await _page.GotoAsync("https://internalportal-test.b2ceurope.eu/datatable/international_customs"); 
+           await _page.GotoAsync(_customUrl); 
            // Assert.AreEqual("Google", await _page.TitleAsync()); 
 
            await _page.FillAsync("//input[@id='username']", "adarsh.k@maersk.com"); 

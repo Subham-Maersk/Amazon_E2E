@@ -5,12 +5,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Configuration; 
 
 namespace Services
 {
     public static class ShipmentService
     {
-        private static readonly string shipmentUrl = "https://as-indicina-ncus-sandbox.azurewebsites.net/api/v1/Shipment/Manifest";
+        private static readonly string shipmentUrl = EnvironmentConfig.GetAllUrls()["PMS_E2E"];
 
         public static async Task<JObject> CallShipmentApi(string jwtToken, string manifestNumber, string customerIdentifier, string filePath)
         {
@@ -57,7 +58,7 @@ namespace Services
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
 
-                string validationUrl = $"https://as-indicina-ncus-sandbox.azurewebsites.net/api/v1/shipment/manifest?customerIdentifier={customerIdentifier}&number={manifestNumber}";
+                string validationUrl = $"{EnvironmentConfig.GetAllUrls()["PMS_E2E"]}?customerIdentifier={customerIdentifier}&number={manifestNumber}";
 
                 HttpResponseMessage response = await client.GetAsync(validationUrl);
 

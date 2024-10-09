@@ -1,7 +1,9 @@
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Configuration; 
 
 namespace Services
 {
@@ -33,8 +35,9 @@ namespace Services
 
         public static async Task<string> AssignContainerToParcels(string containerId, string packageBarcode, string sortJwtToken)
         {
-            string url = $"https://sorting-service.maersk-digital.dev/api/container/{containerId}/parcels";
+            EnvironmentConfig.GetEnvironment("MSP_E2E");
 
+            string url = $"{EnvironmentConfig.BaseURL}/{containerId}/parcels"; 
             var requestBody = new
             {
                 destinationCode = "LAX",
