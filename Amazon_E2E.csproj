@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- JSON files -->
     <None Update="Test_Access_Data_Layer\credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -28,8 +29,13 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Locator files -->
+    <Compile Include="Test\Controller_plus_Service\Custom\Test\Locators\*.cs" />
+  </ItemGroup>
 
   <ItemGroup>
+    <!-- Add Playwright and testing-related packages -->
     <PackageReference Include="Microsoft.Playwright" Version="1.47.0" />
     <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.47.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />

@@ -34,7 +34,7 @@
   "carrierAccountId": "ABCDFRT",
   "shipments": [
     {
-      "orderNumber": "TSTAMZEU90001_0000134",
+      "orderNumber": "TSTAMZEU90001_0000156",
       "marketPlaceId": "1",
       "termsOfSale": "DDP",
       "freightCharge": 7,
@@ -86,8 +86,8 @@
         "exportedCharge": 0.0,
         "exportedChargeCurrencyCode": "USD",
         "description": "Maersk Pen",
-        "trackingNumber": "TSTAMZEU90001_0000134",
-        "trackingBarCodeNumber": "TSTAMZEU90001_0000134",
+        "trackingNumber": "TSTAMZEU90001_0000156",
+        "trackingBarCodeNumber": "TSTAMZEU90001_0000156",
         "legacyShipmentId": "leGacy1",
         "packageNumber": 1,
         "batteryStatements": "Not restricted as per special provision A123",
@@ -141,11 +141,11 @@
           }
         ]
       },
-      "transmissionDate": "2024-10-09T11:23:29",
-      "shipDate": "2024-10-09T11:23:29",
-      "deliveryDate": "2024-10-09T11:23:29"
+      "transmissionDate": "2024-10-09T18:04:33",
+      "shipDate": "2024-10-09T18:04:33",
+      "deliveryDate": "2024-10-09T18:04:33"
     }
   ],
-  "lastManifestNumber": "Testing_20240_252",
-  "lastIncrement": 134
+  "lastManifestNumber": "Testing_20240_274",
+  "lastIncrement": 156
 }
