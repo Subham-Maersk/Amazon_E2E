@@ -1,0 +1,63 @@
+name: E2E Tests
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [on-demand-test] 
+  
+  workflow_dispatch:
+    inputs:
+      api-environment:
+        description: "Select the environment"
+        type: choice
+        default: "sandbox"
+        required: false
+        options:
+          - sandbox
+
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-NET@v8
+        with:
+          NET-version: net8.0
+
+      - name: Install dependencies
+        run:dotnet run
+
+      - name: Run SpecFlow tests
+        env:
+          ENVIRONMENT: ${{ github.event.inputs.api-environment || inputs.api-environment}}
+          CLIENTKEY: ${{ secrets.CLIENTKEY }}
+          AUTHORIZATION: ${{ secrets.AUTHORIZATION }}
+        run: |
+          echo api-environment is ++++++++++++++ ${{ github.event.inputs.api-environment || inputs.api-environment}}
+          npm test
+
+      - name: Deploy report page to Github Page
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: test-results
+
+      # Add a debug step to list the files in the root directory
+      - name: Debug - List contents of root directory
+        run: |
+          echo "Listing contents of root directory:"
+          ls -R .
+
+      # Upload the HTML report as an artifact
+      - name: Upload SpecFlow Reports as Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: SpecFlow-Report
+          path: test-results/
+          retention-days: 2
