@@ -1,0 +1,30 @@
+# Build files
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# VS Code settings
+.vscode/
+
+# Playwright output
+playwright-report/
+screenshots/
+trace.zip
+
+# Log files
+*.log
+
+# Environment variables
+.env
+secrets.json
+
+# NuGet packages
+*.nupkg
+*.snupkg
+
+# OS-specific files
+.DS_Store
+Thumbs.db

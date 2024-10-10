@@ -1,20 +1,34 @@
+using NUnit.Framework;
 using Microsoft.Playwright;
 using System.Threading.Tasks;
+using Configuration;
 
-namespace TestProject.Pages
+namespace Amazon_E2E_copy.Tests
 {
-    public abstract class BasePage
+    public abstract class BaseTest
     {
-        protected readonly IPage _page;
+        protected IPlaywright _playwright;
+        protected IBrowser _browser;
+        protected IPage _page;
+        protected string _customUrl;
 
-        public BasePage(IPage page)
+        [SetUp]
+        public async Task Setup()
         {
-            _page = page;
+            _customUrl = EnvironmentConfig.GetAllUrls()["CUSTOM_E2E"];
+            _playwright = await Playwright.CreateAsync();
+            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            {
+                Headless = false 
+            });
+            _page = await _browser.NewPageAsync();
         }
 
-        public async Task NavigateTo(string url)
+        [TearDown]
+        public async Task TearDown()
         {
-            await _page.GotoAsync(url);
+            await _browser.CloseAsync();
+            _playwright.Dispose();
         }
     }
 }

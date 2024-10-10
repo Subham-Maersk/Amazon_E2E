@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,47 +15,25 @@ namespace Services
         public static async Task<string> GetJwtTokenFromGts(string jsonFilePath)
         {
             var credentials = FileUtils.GetCredentials(jsonFilePath);
-            string email = credentials["email"].ToString();
-            string password = credentials["password"].ToString();
+            var loginData = new
+            {
+                email = credentials["email"].ToString(),
+                password = credentials["password"].ToString()
+            };
 
+            var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(loginData), Encoding.UTF8, "application/json");
             try
             {
-                var loginData = new
-                {
-                    email = email,
-                    password = password
-                };
-
-                string json = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await client.PostAsync(loginUrl, content);
-
+                var response = await client.PostAsync(loginUrl, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    var jsonResponse = JObject.Parse(responseBody);
-                    string jwtToken = jsonResponse["data"]?["jwt"]?.ToString();
-                    Console.WriteLine("Login Successful to GTS");
-                    Console.WriteLine("GTS JWT Token: " + jwtToken);
-                    return jwtToken;
+                    var jsonResponse = JObject.Parse(await response.Content.ReadAsStringAsync());
+                    return jsonResponse["data"]?["jwt"]?.ToString();
                 }
-                else
-                {
-                    Console.WriteLine("Login failed to GTS: " + response.StatusCode);
-                    return null;
-                }
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine($"Request error: {e.Message}");
                 return null;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Unexpected error: {e.Message}");
-                return null;
-            }
+            catch (HttpRequestException) { return null; }
+            catch (Exception) { return null; }
         }
     }
 }

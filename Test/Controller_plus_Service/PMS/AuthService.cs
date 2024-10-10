@@ -15,45 +15,28 @@ namespace Services
         public static async Task<string> GetJwtToken()
         {
             var (email, password) = ReadCredentials();
+            var loginData = new { email, password };
 
-            using (HttpClient client = new HttpClient())
+            using var client = new HttpClient();
+            var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(loginData), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(loginUrl, content);
+
+            if (!response.IsSuccessStatusCode)
             {
-                var loginData = new
-                {
-                    email = email,
-                    password = password
-                };
-
-                string json = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await client.PostAsync(loginUrl, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    var jsonResponse = JObject.Parse(responseBody);
-                    string jwtToken = jsonResponse["data"]?["jwt"]?.ToString();
-                    Console.WriteLine("Login Successful");
-                    Console.WriteLine("JWT Token: " + jwtToken);
-                    return jwtToken;
-                }
-                else
-                {
-                    Console.WriteLine("Login failed: " + response.StatusCode);
-                    return null;
-                }
+                Console.WriteLine($"Login failed: {response.StatusCode}");
+                return null;
             }
+
+            var jsonResponse = JObject.Parse(await response.Content.ReadAsStringAsync());
+            var jwtToken = jsonResponse["data"]?["jwt"]?.ToString();
+            Console.WriteLine($"Login Successful\nJWT Token: {jwtToken}");
+            return jwtToken;
         }
 
         private static (string email, string password) ReadCredentials()
         {
-            string json = File.ReadAllText(credentialsFilePath);
-            var jsonObject = JObject.Parse(json);
-            string email = jsonObject["email"]?.ToString();
-            string password = jsonObject["password"]?.ToString();
-
-            return (email, password);
+            var json = JObject.Parse(File.ReadAllText(credentialsFilePath));
+            return (json["email"]?.ToString(), json["password"]?.ToString());
         }
     }
 }

@@ -14,6 +14,11 @@ namespace Amazon_E2E_copy.Helpers
             _page = page;
         }
 
+        public async Task NavigateTo(string url)
+        {
+            await _page.GotoAsync(url);
+        }
+
         public async Task LoginAsync(string username, string password)
         {
             await _page.FillAsync(CustomLocators.UsernameInput, username);
