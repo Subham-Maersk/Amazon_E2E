@@ -17,8 +17,7 @@ namespace StepDefinitions
         [Given(@"I have valid sorting credentials")]
         public void GivenIHaveValidSortingCredentials()
         {
-                // credentials are stored in the JSON file.
-
+            // Credentials are stored in the JSON file and will be retrieved in the next step.
         }
 
         [When(@"I retrieve the sorting JWT token with valid credentials")]

@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Services;
 using Newtonsoft.Json.Linq;
 
-
 [Binding]
 public class GtsAuthSteps
 {
@@ -15,13 +14,13 @@ public class GtsAuthSteps
     [Given(@"I have valid credentials for GTS login")]
     public void GivenIHaveValidCredentialsForGTSLogin()
     {
-        // credentials are stored in the JSON file.
+        // Credentials are stored in the JSON file, and this step is just a placeholder.
     }
 
     [When(@"I request a JWT token from GTS")]
     public async Task WhenIRequestAJWTTokenFromGTS()
     {
-        _gtsJwtToken = await GtsAuthService.GetJwtTokenFromGts("path/to/credentials.json");
+        _gtsJwtToken = await GtsAuthService.GetJwtTokenFromGts("Test_Access_Data_Layer/gts_credentials.json");
         Assert.IsNotNull(_gtsJwtToken, "JWT token retrieval failed.");
     }
 

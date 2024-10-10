@@ -36,7 +36,15 @@ namespace Services
         private static (string email, string password) ReadCredentials()
         {
             var json = JObject.Parse(File.ReadAllText(credentialsFilePath));
-            return (json["email"]?.ToString(), json["password"]?.ToString());
+            var email = json["email"]?.ToString();
+            var password = json["password"]?.ToString();
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                throw new Exception("Email or password is null or empty.");
+            }
+
+            return (email, password);
         }
     }
 }

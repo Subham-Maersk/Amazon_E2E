@@ -7,16 +7,19 @@ using Newtonsoft.Json.Linq;
 namespace StepDefinitions
 {
     [Binding]
-    public class AuthServiceSteps
+    public class ShipmentServiceSteps
     {
         private string jwtToken;
-        private JObject validationResponse; 
+        private string manifestNumber;
+        private string customerIdentifier = "AMAEU0001";
+        private JObject validationResponse;
         private JObject finalMileTrackingResponse;
 
         [Given(@"the user provides valid credentials")]
         public void GivenTheUserProvidesValidCredentials()
         {
             // This step automatically uses the credentials from the JSON file
+            // You may want to add logic to assert that the credentials are being loaded correctly
         }
 
         [When(@"the user submits the login request")]
@@ -35,12 +38,15 @@ namespace StepDefinitions
             Console.WriteLine("JWT Token: " + jwtToken);
         }
 
-        [When(@"the user validates the shipment creation")]
-        public async Task WhenTheUserValidatesTheShipmentCreation()
+        [When(@"the user validates the shipment creation with manifest number (.*)")]
+        public async Task WhenTheUserValidatesTheShipmentCreation(string manifestNumber)
         {
-            string manifestNumber = "Testing_20240_123"; 
-            string customerIdentifier = "AMAEU0001";
+            if (string.IsNullOrEmpty(jwtToken))
+            {
+                throw new Exception("JWT Token is null or empty before validation.");
+            }
 
+            this.manifestNumber = manifestNumber;
             validationResponse = await ShipmentService.ValidateManifestCreation(jwtToken, manifestNumber, customerIdentifier);
         }
 
@@ -54,15 +60,11 @@ namespace StepDefinitions
             Console.WriteLine("Validation Response: " + validationResponse.ToString());
         }
 
-        // [When(@"the user retrieves the final mile tracking")]
-        // public async Task WhenTheUserRetrievesTheFinalMileTracking()
-        // {
-        //     // Example order ID
-        //     string orderId = "YourOrderId"; // Update with the actual order ID
-        //     string apiKey = "YourApiKey"; // Update with the actual API key
-
-        //     finalMileTrackingResponse = await FinalMileService.GetFinalMileTracking(orderId, apiKey);
-        // }
+        [When(@"the user retrieves the final mile tracking for order (.*) with API key (.*)")]
+        public async Task WhenTheUserRetrievesTheFinalMileTracking(string orderId, string apiKey)
+        {
+            finalMileTrackingResponse = await FinalMileService.GetFinalMileTracking(orderId, apiKey);
+        }
 
         [Then(@"the user should receive the final mile tracking response")]
         public void ThenTheUserShouldReceiveTheFinalMileTrackingResponse()
