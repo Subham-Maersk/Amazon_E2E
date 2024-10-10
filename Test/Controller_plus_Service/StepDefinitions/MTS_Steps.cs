@@ -30,7 +30,7 @@ namespace Steps
         [Given(@"I have a valid JSON file path for the request")]
         public void GivenIHaveAValidJsonFilePathForTheRequest()
         {
-            _jsonFilePath = "Test_data/your-json-file.json"; // Replace with your actual JSON file path
+            _jsonFilePath = "Test_Access_Data_Layer/mts_credentials.json"; // Replace with your actual JSON file path
         }
 
         [When(@"I update data using the MTS API")]

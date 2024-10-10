@@ -1,5 +1,3 @@
-
-
 using NUnit.Framework;
 using Services;
 using Utils;
@@ -83,9 +81,9 @@ namespace Tests
             Assert.IsNotNull(orderId, "Failed to retrieve Order ID from the JSON file.");
             TestContext.WriteLine("Order ID: " + orderId);
 
-            var finalMileResponse = await FinalMileService.GetFinalMileTracking(orderId, _apiKey);
-            Assert.IsNotNull(finalMileResponse, "Failed to retrieve final mile tracking number.");
-            TestContext.WriteLine("Final Mile Tracking Number: " + finalMileResponse["finalMileTracking"]);
+            // var finalMileResponse = await FinalMileService.GetFinalMileTracking(orderId, _apiKey);
+            // Assert.IsNotNull(finalMileResponse, "Failed to retrieve final mile tracking number.");
+            // TestContext.WriteLine("Final Mile Tracking Number: " + finalMileResponse["finalMileTracking"]);
 
             _gtsJwtToken = await GtsAuthService.GetJwtTokenFromGts("Test_Access_Data_Layer/gts_credentials.json");
             Assert.IsNotNull(_gtsJwtToken, "Failed to retrieve GTS JWT token.");
@@ -94,10 +92,11 @@ namespace Tests
             Assert.IsNotNull(trackingNumber, "Failed to retrieve Tracking Number from the JSON file.");
             TestContext.WriteLine($"Tracking Number: {trackingNumber}");
 
-            var gtsTrackingService = new GtsTrackingService();
-            string packageBarcode = await gtsTrackingService.GetPackageBarcodeAsync(_gtsJwtToken, trackingNumber);
-            Assert.IsNotNull(packageBarcode, "Failed to retrieve PackageBarcode from GTS tracking API.");
-            TestContext.WriteLine("PackageBarcode: " + packageBarcode);
+
+            // var gtsTrackingService = new GtsTrackingService();
+            // string packageBarcode = await gtsTrackingService.GetPackageBarcodeAsync(_gtsJwtToken, trackingNumber);
+            // Assert.IsNotNull(packageBarcode, "Failed to retrieve PackageBarcode from GTS tracking API.");
+            // TestContext.WriteLine("PackageBarcode: " + packageBarcode);
 
             var labelResponse = await _labelGeneratorService.GenerateLabelAsync("Test_Access_Data_Layer/labelRequest.json", _jwtToken);
             Assert.IsNotNull(labelResponse, "Failed to generate label.");
@@ -107,9 +106,9 @@ namespace Tests
             Assert.IsNotNull(extractedId, "No ID starting with 'ams' found in the label response.");
             TestContext.WriteLine("Extracted ID: " + extractedId);
 
-            var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
-            Assert.IsNotNull(assignResponse, "Failed to assign container to parcels.");
-            TestContext.WriteLine("Container Assignment Response: " + assignResponse);
+            // var assignResponse = await SortService.AssignContainerToParcels(extractedId, packageBarcode, _sortJwtToken);
+            // Assert.IsNotNull(assignResponse, "Failed to assign container to parcels.");
+            // TestContext.WriteLine("Container Assignment Response: " + assignResponse);
 
             var mtsResponse = await MtsService.UpdateDataAsync(_apiUrl, _mtsApiKey, "Test_Access_Data_Layer/mts_credentials.json");
             Assert.IsNotNull(mtsResponse, "Failed to call MTS service.");

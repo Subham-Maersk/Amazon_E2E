@@ -48,7 +48,11 @@
           "dependencies": {
             "Allure.Commons": {
               "target": "Package",
-              "version": "[2.3.61.1, )"
+              "version": "[3.5.0.73, )"
+            },
+            "Allure.NUnit": {
+              "target": "Package",
+              "version": "[2.12.1, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -66,10 +70,6 @@
               "target": "Package",
               "version": "[3.13.3, )"
             },
-            "NUnit.Allure": {
-              "target": "Package",
-              "version": "[0.2.3, )"
-            },
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.2.1, )"
@@ -78,9 +78,13 @@
               "target": "Package",
               "version": "[3.9.74, )"
             },
+            "SpecFlow.Allure": {
+              "target": "Package",
+              "version": "[3.5.0.73, )"
+            },
             "SpecFlow.NUnit": {
               "target": "Package",
-              "version": "[3.9.74, )"
+              "version": "[3.9.40, )"
             }
           },
           "imports": [

@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
@@ -44,7 +45,7 @@ public class LabelGeneratorServiceSteps
     }
 
     [Then(@"the label response should contain the expected 'ams' ID")]
-    public void ThenTheLabelResponseShouldContainTheExpectedAmslaxId()
+    public void ThenTheLabelResponseShouldContainTheExpectedAmsId()
     {
         string extractedId = ExtractIdFromLabelResponse(_labelResponse);
         Assert.IsNotNull(extractedId, "No ID starting with 'ams' found in the label response.");

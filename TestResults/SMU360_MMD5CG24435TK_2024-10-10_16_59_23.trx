@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="92afc613-e2bc-4dd8-bbfb-520098178783" name="SMU360@MMD5CG24435TK 2024-10-10 16:59:23" runUser="CRB\SMU360" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2024-10-10T16:59:23.3231209+05:30" queuing="2024-10-10T16:59:23.3231215+05:30" start="2024-10-10T16:59:20.9533447+05:30" finish="2024-10-10T16:59:26.6666356+05:30" />
+  <TestSettings name="default" id="5b3cb8f4-9d5b-4d0f-b711-3309761f159d">
+    <Deployment runDeploymentRoot="SMU360_MMD5CG24435TK_2024-10-10_16_59_23" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="255aa0a6-1bdc-467f-b2f4-9afaf78a6554" testId="aad7b133-fc5d-4888-a731-7f7b3b2a2989" testName="GenerateALabelSuccessfully" computerName="MMD5CG24435TK" duration="00:00:00.0015750" startTime="2024-10-10T16:59:22.2936205+05:30" endTime="2024-10-10T16:59:22.2951955+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="255aa0a6-1bdc-467f-b2f4-9afaf78a6554" />
+    <UnitTestResult executionId="352407f5-fcd6-46f4-9961-da75e28762c2" testId="4a01d423-0984-f6cc-1a0c-6af1740857f6" testName="UpdateDataWithValidAPIKeyAndJSONPayload" computerName="MMD5CG24435TK" duration="00:00:00.0371380" startTime="2024-10-10T16:59:22.2961044+05:30" endTime="2024-10-10T16:59:22.3332426+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="352407f5-fcd6-46f4-9961-da75e28762c2">
+      <Output>
+        <StdOut>Given I have a valid MTS API URL</StdOut>
+        <ErrorInfo>
+          <Message>System.ArgumentNullException : Value cannot be null. (Parameter 'key')</Message>
+          <StackTrace>   at System.ThrowHelper.ThrowArgumentNullException(String name)&#xD;
+   at System.Collections.Concurrent.ConcurrentDictionary`2.TryGetValue(TKey key, TValue&amp; value)&#xD;
+   at System.Collections.Concurrent.ConcurrentDictionary`2.get_Item(TKey key)&#xD;
+   at Allure.Commons.Storage.AllureStorage.Get[T](String uuid)&#xD;
+   at Allure.Commons.Storage.AllureStorage.AddStep(String parentUuid, String uuid, StepResult stepResult)&#xD;
+   at Allure.Commons.AllureLifecycle.StartStep(String parentUuid, String uuid, StepResult stepResult)&#xD;
+   at Allure.Commons.AllureLifecycle.StartStep(String uuid, StepResult result)&#xD;
+   at Allure.SpecFlowPlugin.AllureTestTracerWrapper.StartStep(StepInstance stepInstance)&#xD;
+   at Allure.SpecFlowPlugin.AllureTestTracerWrapper.TechTalk.SpecFlow.Tracing.ITestTracer.TraceStep(StepInstance stepInstance, Boolean showAdditionalArguments)&#xD;
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)&#xD;
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.Step(StepDefinitionKeyword stepDefinitionKeyword, String keyword, String text, String multilineTextArg, Table tableArg)&#xD;
+   at TechTalk.SpecFlow.TestRunner.Given(String text, String multilineTextArg, Table tableArg, String keyword)&#xD;
+   at Amazon_E2E.Test.Controller_Plus_Service.Features.MTSDataUpdateFeature.UpdateDataWithValidAPIKeyAndJSONPayload() in C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\Test\Controller_plus_Service\Features\MTS.feature:line 4&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ea4cf39b-e46c-4dc6-8811-7b827c2ca616" testId="549abac6-dc6e-874b-2853-fc877d53d5ce" testName="LaunchTestAsync" computerName="MMD5CG24435TK" duration="00:00:01.8288500" startTime="2024-10-10T16:59:24.3162577+05:30" endTime="2024-10-10T16:59:26.1451090+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea4cf39b-e46c-4dc6-8811-7b827c2ca616" />
+    <UnitTestResult executionId="2c4f70a0-2b09-483f-93dc-4aefb9afc7d7" testId="94a87634-94af-589d-6eee-0fb8dc477f3f" testName="AssignContainerToParcel" computerName="MMD5CG24435TK" duration="00:00:00.0011180" startTime="2024-10-10T16:59:24.2797379+05:30" endTime="2024-10-10T16:59:24.2808570+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2c4f70a0-2b09-483f-93dc-4aefb9afc7d7" />
+    <UnitTestResult executionId="5cb6829c-dfa4-47a3-8698-37dc57b416cc" testId="6efe9f55-6958-788e-1ddd-02161360c1c1" testName="SuccessfullyRetrieveAJWTTokenAndPackageBarcode" computerName="MMD5CG24435TK" duration="00:00:00.0169680" startTime="2024-10-10T16:59:22.2678650+05:30" endTime="2024-10-10T16:59:22.2847091+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5cb6829c-dfa4-47a3-8698-37dc57b416cc" />
+    <UnitTestResult executionId="a092e4f5-c558-4370-854f-c6614da0ed42" testId="390003ca-bb85-2457-93b1-4554b7fd4614" testName="UserValidatesTheShipmentCreation" computerName="MMD5CG24435TK" duration="00:00:00.1179700" startTime="2024-10-10T16:59:24.1348162+05:30" endTime="2024-10-10T16:59:24.2527853+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a092e4f5-c558-4370-854f-c6614da0ed42">
+      <Output>
+        <StdOut>When the user validates the shipment creation&#xD;
+-&gt; No matching step definition found for the step. Use the following code to create one:&#xD;
+        [When(@"the user validates the shipment creation")]&#xD;
+        public void WhenTheUserValidatesTheShipmentCreation()&#xD;
+        {&#xD;
+            _scenarioContext.Pending();&#xD;
+        }&#xD;
+&#xD;
+-&gt; error: Unable to cast object of type 'Allure.Commons.StepResult' to type 'Allure.Commons.TestResult'. (0.0s)</StdOut>
+        <ErrorInfo>
+          <Message>System.ArgumentNullException : Value cannot be null. (Parameter 'key')</Message>
+          <StackTrace>   at System.ThrowHelper.ThrowArgumentNullException(String name)&#xD;
+   at System.Collections.Concurrent.ConcurrentDictionary`2.TryGetValue(TKey key, TValue&amp; value)&#xD;
+   at System.Collections.Concurrent.ConcurrentDictionary`2.get_Item(TKey key)&#xD;
+   at Allure.Commons.Storage.AllureStorage.Get[T](String uuid)&#xD;
+   at Allure.Commons.AllureLifecycle.UpdateTestCase(String uuid, Action`1 update)&#xD;
+   at Allure.Commons.AllureLifecycle.UpdateTestCase(Action`1 update)&#xD;
+   at Allure.SpecFlowPlugin.AllureTestTracerWrapper.FailScenario(Exception ex)&#xD;
+   at Allure.SpecFlowPlugin.AllureTestTracerWrapper.TechTalk.SpecFlow.Tracing.ITestTracer.TraceError(Exception ex, TimeSpan duration)&#xD;
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)&#xD;
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.Step(StepDefinitionKeyword stepDefinitionKeyword, String keyword, String text, String multilineTextArg, Table tableArg)&#xD;
+   at TechTalk.SpecFlow.TestRunner.When(String text, String multilineTextArg, Table tableArg, String keyword)&#xD;
+   at Amazon_E2E.Test.Controller_Plus_Service.Features.ShipmentProcessingFeature.UserValidatesTheShipmentCreation() in C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\Test\Controller_plus_Service\Features\PMS.feature:line 9&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0be41bf1-3662-4fe8-8731-f686bb1f12d8" testId="f75b8041-c466-2276-08b4-91b037acd24c" testName="UserLogsInAndValidatesShipmentCreation" computerName="MMD5CG24435TK" duration="00:00:01.8005940" startTime="2024-10-10T16:59:22.3339635+05:30" endTime="2024-10-10T16:59:24.1345563+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0be41bf1-3662-4fe8-8731-f686bb1f12d8">
+      <Output>
+        <StdOut>Given the user provides valid credentials&#xD;
+-&gt; done: ShipmentServiceSteps.GivenTheUserProvidesValidCredentials() (0.0s)&#xD;
+When the user submits the login request&#xD;
+Login Successful&#xD;
+JWT Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTM5LCJmaXJzdF9uYW1lIjoiU2VlYnVyZ2VyIiwibGFzdF9uYW1lIjoiTWFlcnNrIiwiZW1haWwiOiJzZWVidXJnZXJAbWFlcnNrLmNvbSIsInJvbGVzIjpbeyJyb2xlIjoiUE1TIiwiZGVzY3JpcHRpb24iOiJQYXJjZWwgTWFuaWZlc3QgU2VydmljZSBzcGVjaWZpYyByb2xlIn0seyJyb2xlIjoiR1RTIiwiZGVzY3JpcHRpb24iOiJBY2NvdW50cyB0aGF0IGFyZSBhdXRob3Jpc2VkIHRvIGFjY2VzcyBHVFMifSx7InJvbGUiOiJCcmFuZF9BcGlfVXNlciIsImRlc2NyaXB0aW9uIjoiVXNlciBmb3IgQnJhbmQgQVBJIn1dLCJicmFuZF9pZCI6IiIsImV4cCI6MTcyOTE2NDU2NH0.rbjpHnPeVU9ZE4-8bgxLiki4IJrFXJN7oTYSrkFqS6ZPk4lNRMVlRsbXiKuSt_sV9LeCRh00p2mbm48agOC0kr9GaoaEfSuYi-vOl5kBks7kOFvDVmhxK0Nmsk85kgBxdLjZWMKm1nC5bkfKSQglRt4dVBIpD8ONtXUUrrE7a98&#xD;
+-&gt; done: ShipmentServiceSteps.WhenTheUserSubmitsTheLoginRequest() (1.8s)&#xD;
+Then the user should receive a JWT token&#xD;
+JWT Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTM5LCJmaXJzdF9uYW1lIjoiU2VlYnVyZ2VyIiwibGFzdF9uYW1lIjoiTWFlcnNrIiwiZW1haWwiOiJzZWVidXJnZXJAbWFlcnNrLmNvbSIsInJvbGVzIjpbeyJyb2xlIjoiUE1TIiwiZGVzY3JpcHRpb24iOiJQYXJjZWwgTWFuaWZlc3QgU2VydmljZSBzcGVjaWZpYyByb2xlIn0seyJyb2xlIjoiR1RTIiwiZGVzY3JpcHRpb24iOiJBY2NvdW50cyB0aGF0IGFyZSBhdXRob3Jpc2VkIHRvIGFjY2VzcyBHVFMifSx7InJvbGUiOiJCcmFuZF9BcGlfVXNlciIsImRlc2NyaXB0aW9uIjoiVXNlciBmb3IgQnJhbmQgQVBJIn1dLCJicmFuZF9pZCI6IiIsImV4cCI6MTcyOTE2NDU2NH0.rbjpHnPeVU9ZE4-8bgxLiki4IJrFXJN7oTYSrkFqS6ZPk4lNRMVlRsbXiKuSt_sV9LeCRh00p2mbm48agOC0kr9GaoaEfSuYi-vOl5kBks7kOFvDVmhxK0Nmsk85kgBxdLjZWMKm1nC5bkfKSQglRt4dVBIpD8ONtXUUrrE7a98&#xD;
+-&gt; done: ShipmentServiceSteps.ThenTheUserShouldReceiveAJwtToken() (0.0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="38678a37-6d1a-4222-bd7e-bface19f467f" testId="d95fb994-0694-ecb2-235e-f21e2ccc8014" testName="TestShipmentApiAndValidationFlow" computerName="MMD5CG24435TK" duration="00:00:00.0402150" startTime="2024-10-10T16:59:26.1454432+05:30" endTime="2024-10-10T16:59:26.1856574+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="38678a37-6d1a-4222-bd7e-bface19f467f">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : No such host is known. (api-eclapi-ncus-sandbox.azurewebsites.net:443)&#xD;
+  ----&gt; System.Net.Sockets.SocketException : No such host is known.</Message>
+          <StackTrace>   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(QueueItem queueItem)&#xD;
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpClient.&lt;SendAsync&gt;g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)&#xD;
+   at Services.AuthService.GetJwtToken() in C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\Test\Controller_plus_Service\PMS\AuthService.cs:line 22&#xD;
+   at Tests.ShipmentTests.Setup() in C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\Tests\ShipmentTests.cs:line 40&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()&#xD;
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.SetUpTearDownCommand.&lt;&gt;c__DisplayClass0_0.&lt;.ctor&gt;b__0(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)&#xD;
+--SocketException&#xD;
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)&#xD;
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)&#xD;
+   at System.Net.Sockets.Socket.&lt;ConnectAsync&gt;g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)&#xD;
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="UserLogsInAndValidatesShipmentCreation" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="f75b8041-c466-2276-08b4-91b037acd24c">
+      <Execution id="0be41bf1-3662-4fe8-8731-f686bb1f12d8" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.ShipmentProcessingFeature" name="UserLogsInAndValidatesShipmentCreation" />
+    </UnitTest>
+    <UnitTest name="AssignContainerToParcel" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="94a87634-94af-589d-6eee-0fb8dc477f3f">
+      <Execution id="2c4f70a0-2b09-483f-93dc-4aefb9afc7d7" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.SortServiceAssignmentFeature" name="AssignContainerToParcel" />
+    </UnitTest>
+    <UnitTest name="GenerateALabelSuccessfully" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="aad7b133-fc5d-4888-a731-7f7b3b2a2989">
+      <Execution id="255aa0a6-1bdc-467f-b2f4-9afaf78a6554" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.LabelGenerationFeature" name="GenerateALabelSuccessfully" />
+    </UnitTest>
+    <UnitTest name="TestShipmentApiAndValidationFlow" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="d95fb994-0694-ecb2-235e-f21e2ccc8014">
+      <Execution id="38678a37-6d1a-4222-bd7e-bface19f467f" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Tests.ShipmentTests" name="TestShipmentApiAndValidationFlow" />
+    </UnitTest>
+    <UnitTest name="LaunchTestAsync" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="549abac6-dc6e-874b-2853-fc877d53d5ce">
+      <Execution id="ea4cf39b-e46c-4dc6-8811-7b827c2ca616" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E_copy.Tests.LaunchTest" name="LaunchTestAsync" />
+    </UnitTest>
+    <UnitTest name="UserValidatesTheShipmentCreation" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="390003ca-bb85-2457-93b1-4554b7fd4614">
+      <Execution id="a092e4f5-c558-4370-854f-c6614da0ed42" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.ShipmentProcessingFeature" name="UserValidatesTheShipmentCreation" />
+    </UnitTest>
+    <UnitTest name="SuccessfullyRetrieveAJWTTokenAndPackageBarcode" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="6efe9f55-6958-788e-1ddd-02161360c1c1">
+      <Execution id="5cb6829c-dfa4-47a3-8698-37dc57b416cc" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.GTSAuthenticationAndTrackingFeature" name="SuccessfullyRetrieveAJWTTokenAndPackageBarcode" />
+    </UnitTest>
+    <UnitTest name="UpdateDataWithValidAPIKeyAndJSONPayload" storage="c:\users\smu360\onedrive - maersk group\documents\github\amazon_e2e\bin\debug\net8.0\amazon_e2e.dll" id="4a01d423-0984-f6cc-1a0c-6af1740857f6">
+      <Execution id="352407f5-fcd6-46f4-9961-da75e28762c2" />
+      <TestMethod codeBase="C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll" adapterTypeName="executor://nunit3testexecutor/" className="Amazon_E2E.Test.Controller_Plus_Service.Features.MTSDataUpdateFeature" name="UpdateDataWithValidAPIKeyAndJSONPayload" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="aad7b133-fc5d-4888-a731-7f7b3b2a2989" executionId="255aa0a6-1bdc-467f-b2f4-9afaf78a6554" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a01d423-0984-f6cc-1a0c-6af1740857f6" executionId="352407f5-fcd6-46f4-9961-da75e28762c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="549abac6-dc6e-874b-2853-fc877d53d5ce" executionId="ea4cf39b-e46c-4dc6-8811-7b827c2ca616" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="94a87634-94af-589d-6eee-0fb8dc477f3f" executionId="2c4f70a0-2b09-483f-93dc-4aefb9afc7d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6efe9f55-6958-788e-1ddd-02161360c1c1" executionId="5cb6829c-dfa4-47a3-8698-37dc57b416cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="390003ca-bb85-2457-93b1-4554b7fd4614" executionId="a092e4f5-c558-4370-854f-c6614da0ed42" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f75b8041-c466-2276-08b4-91b037acd24c" executionId="0be41bf1-3662-4fe8-8731-f686bb1f12d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d95fb994-0694-ecb2-235e-f21e2ccc8014" executionId="38678a37-6d1a-4222-bd7e-bface19f467f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="8" executed="8" passed="5" failed="3" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.2.0.0: Test execution started&#xD;
+Running all tests in C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\bin\Debug\net8.0\Amazon_E2E.dll&#xD;
+   NUnit3TestExecutor discovered 8 of 8 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.2.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="MMD5CG24435TK" outcome="Warning" timestamp="2024-10-10T16:59:22.3497285+05:30">
+        <Text>Given I have a valid MTS API URL&#xD;
+</Text>
+      </RunInfo>
+      <RunInfo computerName="MMD5CG24435TK" outcome="Warning" timestamp="2024-10-10T16:59:24.1365255+05:30">
+        <Text>Given the user provides valid credentials&#xD;
+-&gt; done: ShipmentServiceSteps.GivenTheUserProvidesValidCredentials() (0.0s)&#xD;
+When the user submits the login request&#xD;
+Login Successful&#xD;
+JWT Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTM5LCJmaXJzdF9uYW1lIjoiU2VlYnVyZ2VyIiwibGFzdF9uYW1lIjoiTWFlcnNrIiwiZW1haWwiOiJzZWVidXJnZXJAbWFlcnNrLmNvbSIsInJvbGVzIjpbeyJyb2xlIjoiUE1TIiwiZGVzY3JpcHRpb24iOiJQYXJjZWwgTWFuaWZlc3QgU2VydmljZSBzcGVjaWZpYyByb2xlIn0seyJyb2xlIjoiR1RTIiwiZGVzY3JpcHRpb24iOiJBY2NvdW50cyB0aGF0IGFyZSBhdXRob3Jpc2VkIHRvIGFjY2VzcyBHVFMifSx7InJvbGUiOiJCcmFuZF9BcGlfVXNlciIsImRlc2NyaXB0aW9uIjoiVXNlciBmb3IgQnJhbmQgQVBJIn1dLCJicmFuZF9pZCI6IiIsImV4cCI6MTcyOTE2NDU2NH0.rbjpHnPeVU9ZE4-8bgxLiki4IJrFXJN7oTYSrkFqS6ZPk4lNRMVlRsbXiKuSt_sV9LeCRh00p2mbm48agOC0kr9GaoaEfSuYi-vOl5kBks7kOFvDVmhxK0Nmsk85kgBxdLjZWMKm1nC5bkfKSQglRt4dVBIpD8ONtXUUrrE7a98&#xD;
+-&gt; done: ShipmentServiceSteps.WhenTheUserSubmitsTheLoginRequest() (1.8s)&#xD;
+Then the user should receive a JWT token&#xD;
+JWT Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTM5LCJmaXJzdF9uYW1lIjoiU2VlYnVyZ2VyIiwibGFzdF9uYW1lIjoiTWFlcnNrIiwiZW1haWwiOiJzZWVidXJnZXJAbWFlcnNrLmNvbSIsInJvbGVzIjpbeyJyb2xlIjoiUE1TIiwiZGVzY3JpcHRpb24iOiJQYXJjZWwgTWFuaWZlc3QgU2VydmljZSBzcGVjaWZpYyByb2xlIn0seyJyb2xlIjoiR1RTIiwiZGVzY3JpcHRpb24iOiJBY2NvdW50cyB0aGF0IGFyZSBhdXRob3Jpc2VkIHRvIGFjY2VzcyBHVFMifSx7InJvbGUiOiJCcmFuZF9BcGlfVXNlciIsImRlc2NyaXB0aW9uIjoiVXNlciBmb3IgQnJhbmQgQVBJIn1dLCJicmFuZF9pZCI6IiIsImV4cCI6MTcyOTE2NDU2NH0.rbjpHnPeVU9ZE4-8bgxLiki4IJrFXJN7oTYSrkFqS6ZPk4lNRMVlRsbXiKuSt_sV9LeCRh00p2mbm48agOC0kr9GaoaEfSuYi-vOl5kBks7kOFvDVmhxK0Nmsk85kgBxdLjZWMKm1nC5bkfKSQglRt4dVBIpD8ONtXUUrrE7a98&#xD;
+-&gt; done: ShipmentServiceSteps.ThenTheUserShouldReceiveAJwtToken() (0.0s)&#xD;
+</Text>
+      </RunInfo>
+      <RunInfo computerName="MMD5CG24435TK" outcome="Warning" timestamp="2024-10-10T16:59:24.2544931+05:30">
+        <Text>When the user validates the shipment creation&#xD;
+-&gt; No matching step definition found for the step. Use the following code to create one:&#xD;
+        [When(@"the user validates the shipment creation")]&#xD;
+        public void WhenTheUserValidatesTheShipmentCreation()&#xD;
+        {&#xD;
+            _scenarioContext.Pending();&#xD;
+        }&#xD;
+&#xD;
+-&gt; error: Unable to cast object of type 'Allure.Commons.StepResult' to type 'Allure.Commons.TestResult'. (0.0s)&#xD;
+</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
