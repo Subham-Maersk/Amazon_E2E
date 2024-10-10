@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SMU360\\OneDrive - Maersk Group\\Documents\\GitHub\\Amazon_E2E\\Amazon_E2E.csproj": {}
+    "C:\\Users\\AKU681\\OneDrive - Maersk Group\\Desktop\\E2E_DEMO\\Amazon_E2E\\Amazon_E2E.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SMU360\\OneDrive - Maersk Group\\Documents\\GitHub\\Amazon_E2E\\Amazon_E2E.csproj": {
+    "C:\\Users\\AKU681\\OneDrive - Maersk Group\\Desktop\\E2E_DEMO\\Amazon_E2E\\Amazon_E2E.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SMU360\\OneDrive - Maersk Group\\Documents\\GitHub\\Amazon_E2E\\Amazon_E2E.csproj",
+        "projectUniqueName": "C:\\Users\\AKU681\\OneDrive - Maersk Group\\Desktop\\E2E_DEMO\\Amazon_E2E\\Amazon_E2E.csproj",
         "projectName": "Amazon_E2E",
-        "projectPath": "C:\\Users\\SMU360\\OneDrive - Maersk Group\\Documents\\GitHub\\Amazon_E2E\\Amazon_E2E.csproj",
-        "packagesPath": "C:\\Users\\SMU360\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SMU360\\OneDrive - Maersk Group\\Documents\\GitHub\\Amazon_E2E\\obj\\",
+        "projectPath": "C:\\Users\\AKU681\\OneDrive - Maersk Group\\Desktop\\E2E_DEMO\\Amazon_E2E\\Amazon_E2E.csproj",
+        "packagesPath": "C:\\Users\\AKU681\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AKU681\\OneDrive - Maersk Group\\Desktop\\E2E_DEMO\\Amazon_E2E\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\SMU360\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\AKU681\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -99,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
