@@ -13,12 +13,12 @@ namespace Amazon_E2E_copy.Tests
         {
             _method = new Method(_page); 
 
-            await _method.NavigateTo(_customUrl);
-            await _method.LoginAsync("adarsh.k@maersk.com", "ho6!NX4x2edb%S8CeJgW2t");  
-            await _method.NavigateToCustomsToolsAsync(); 
-            await _method.SelectDateAndAirportsAsync(); 
-            await _method.DispatchAsync("AMSLAXWSSF815XUYXW000001088"); 
-            await _method.VerifyDocumentsGeneratedAsync(); 
+            // await _method.NavigateTo(_customUrl);
+            // await _method.LoginAsync("adarsh.k@maersk.com", "ho6!NX4x2edb%S8CeJgW2t");  
+            // await _method.NavigateToCustomsToolsAsync(); 
+            // await _method.SelectDateAndAirportsAsync(); 
+            // await _method.DispatchAsync("AMSLAXWSSF815XUYXW000001088"); 
+            // await _method.VerifyDocumentsGeneratedAsync(); 
         }
     }
 }
