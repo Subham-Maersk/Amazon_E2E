@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using Configuration; 
+using Configuration;
 
 namespace Services
 {
@@ -15,64 +15,30 @@ namespace Services
 
         public static async Task<JObject> CallShipmentApi(string jwtToken, string manifestNumber, string customerIdentifier, string filePath)
         {
-            using (HttpClient client = new HttpClient())
+            using var client = new HttpClient { DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Bearer", jwtToken) } };
+            
+            Console.WriteLine($"Manifest Number: {manifestNumber}");
+            Console.WriteLine($"Customer Identifier: {customerIdentifier}");
+
+            var shipmentDataJson = File.ReadAllText(filePath);
+            using var multipartFormContent = new MultipartFormDataContent
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+                { new StringContent(manifestNumber), "number" },
+                { new StringContent(customerIdentifier), "customerIdentifier" },
+                { new ByteArrayContent(Encoding.UTF8.GetBytes(shipmentDataJson)) { Headers = { ContentType = new MediaTypeHeaderValue("application/json") } }, "file", Path.GetFileName(filePath) }
+            };
 
-                Console.WriteLine("Manifest Number: " + manifestNumber);
-                Console.WriteLine("Customer Identifier: " + customerIdentifier);
-
-                var shipmentDataJson = File.ReadAllText(filePath);
-                
-                using (var multipartFormContent = new MultipartFormDataContent())
-                {
-                    var numberContent = new StringContent(manifestNumber); 
-                    var customerContent = new StringContent(customerIdentifier);
-                    
-                    multipartFormContent.Add(numberContent, "number"); 
-                    multipartFormContent.Add(customerContent, "customerIdentifier"); 
-
-                    var fileContent = new ByteArrayContent(Encoding.UTF8.GetBytes(shipmentDataJson));
-                    fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    multipartFormContent.Add(fileContent, "file", Path.GetFileName(filePath));
-
-                    HttpResponseMessage response = await client.PostAsync(shipmentUrl, multipartFormContent);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseBody = await response.Content.ReadAsStringAsync();
-                        return JObject.Parse(responseBody);
-                    }
-                    else
-                    {
-                        var errorResponseBody = await response.Content.ReadAsStringAsync();
-                        return null;
-                    }
-                }
-            }
+            var response = await client.PostAsync(shipmentUrl, multipartFormContent);
+            return response.IsSuccessStatusCode ? JObject.Parse(await response.Content.ReadAsStringAsync()) : null;
         }
 
         public static async Task<JObject> ValidateManifestCreation(string jwtToken, string manifestNumber, string customerIdentifier)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+            using var client = new HttpClient { DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Bearer", jwtToken) } };
+            var validationUrl = $"{shipmentUrl}?customerIdentifier={customerIdentifier}&number={manifestNumber}";
 
-                string validationUrl = $"{EnvironmentConfig.GetAllUrls()["PMS_E2E"]}?customerIdentifier={customerIdentifier}&number={manifestNumber}";
-
-                HttpResponseMessage response = await client.GetAsync(validationUrl);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    return JObject.Parse(responseBody);
-                }
-                else
-                {
-                    var errorResponseBody = await response.Content.ReadAsStringAsync();
-                    return null;
-                }
-            }
+            var response = await client.GetAsync(validationUrl);
+            return response.IsSuccessStatusCode ? JObject.Parse(await response.Content.ReadAsStringAsync()) : null;
         }
     }
 }

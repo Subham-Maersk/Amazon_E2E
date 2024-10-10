@@ -42,7 +42,7 @@ namespace TestProject.Helpers
 
         public async Task TakeScreenshotAsync(string filePath)
         {
-            await _page.ScreenshotAsync(new PageScreenshotOptions { Path = filePath });
+            await _page.ScreenshotAsync(new PageScreenshotOptions { Path = "Screenshot.png" });
         }
     }
 }

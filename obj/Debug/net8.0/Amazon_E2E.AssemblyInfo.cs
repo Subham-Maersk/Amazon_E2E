@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Amazon_E2E")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2a0d2a6542e854a3b6596f6467f6d534ad54a8e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bcb9c97978ab8b19e2a2400960797216ddb2848")]
 [assembly: System.Reflection.AssemblyProductAttribute("Amazon_E2E")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Amazon_E2E")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
