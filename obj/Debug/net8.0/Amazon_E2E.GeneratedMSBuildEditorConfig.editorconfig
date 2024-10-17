@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Amazon_E2E
-build_property.ProjectDir = C:\Users\AKU681\OneDrive - Maersk Group\Desktop\E2E_DEMO\Amazon_E2E\
+build_property.ProjectDir = C:\Users\SMU360\OneDrive - Maersk Group\Documents\GitHub\Amazon_E2E\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
