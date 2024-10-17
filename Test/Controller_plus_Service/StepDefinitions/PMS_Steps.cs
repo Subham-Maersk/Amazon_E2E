@@ -3,43 +3,35 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using Services;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
+using Utils;
 
 namespace StepDefinitions
 {
     [Binding]
+    [Category("Amazon")]
     public class AuthServiceSteps
     {
         private string jwtToken;
         private JObject validationResponse; 
-        private JObject finalMileTrackingResponse;
+        private JObject finalMileTrackingResponse; 
 
-        [Given(@"the user provides valid credentials")]
-        public void GivenTheUserProvidesValidCredentials()
+        [Given(@"the user login for manifest creation")]
+        public void GivenTheUserLoginForManifestCreation()
         {
-            // This step automatically uses the credentials from the JSON file
-        }
-
-        [When(@"the user submits the login request")]
-        public async Task WhenTheUserSubmitsTheLoginRequest()
-        {
-            jwtToken = await AuthService.GetJwtToken();
-        }
-
-        [Then(@"the user should receive a JWT token")]
-        public void ThenTheUserShouldReceiveAJwtToken()
-        {
-            if (string.IsNullOrEmpty(jwtToken))
-            {
-                throw new Exception("JWT token was not received.");
-            }
-            Console.WriteLine("JWT Token: " + jwtToken);
         }
 
         [When(@"the user validates the shipment creation")]
         public async Task WhenTheUserValidatesTheShipmentCreation()
         {
-            string manifestNumber = "Testing_20240_123"; 
-            string customerIdentifier = "AMAEU0001";
+            jwtToken = await AuthService.GetJwtToken();
+
+            string jsonFilePath = "Test_Access_Data_Layer/AMS_LAX_2709.json"; 
+            FileUtils.UpdateShipmentDetails(jsonFilePath);
+            var jsonContent = FileUtils.ReadJsonFile(jsonFilePath); 
+
+            string manifestNumber = jsonContent["lastManifestNumber"]?.ToString();
+            string customerIdentifier = "AMAEU0001"; 
 
             validationResponse = await ShipmentService.ValidateManifestCreation(jwtToken, manifestNumber, customerIdentifier);
         }
@@ -51,18 +43,17 @@ namespace StepDefinitions
             {
                 throw new Exception("Validation response was not received.");
             }
-            Console.WriteLine("Validation Response: " + validationResponse.ToString());
+            TestContext.WriteLine("Validation Response: " + validationResponse.ToString());
         }
 
-        // [When(@"the user retrieves the final mile tracking")]
-        // public async Task WhenTheUserRetrievesTheFinalMileTracking()
-        // {
-        //     // Example order ID
-        //     string orderId = "YourOrderId"; // Update with the actual order ID
-        //     string apiKey = "YourApiKey"; // Update with the actual API key
+        [When(@"the user retrieves the final mile tracking")]
+        public async Task WhenTheUserRetrievesTheFinalMileTracking()
+        {
+            string orderId = "YourOrderId"; 
+            string apiKey = "VkB3eHRnellwRWdBKmY0VlZ3aCpWSE5yQ2dwZTlaOUdqanhHNlBVd3BLeTdWaExweHcjOW8mWHpWRUFoSDNXMzk1cnBjNzVIQlJUaiZ1Q3F1Xk1QJE12dW4hcGlhY2I5aDNhY01WaFJWdDZhbkUlJHB1YXQmI2lDOV51V012SFU="; // Use actual API key
 
-        //     finalMileTrackingResponse = await FinalMileService.GetFinalMileTracking(orderId, apiKey);
-        // }
+            finalMileTrackingResponse = await FinalMileService.GetFinalMileTracking(orderId, apiKey);
+        }
 
         [Then(@"the user should receive the final mile tracking response")]
         public void ThenTheUserShouldReceiveTheFinalMileTrackingResponse()
@@ -71,7 +62,7 @@ namespace StepDefinitions
             {
                 throw new Exception("Final mile tracking response was not received.");
             }
-            Console.WriteLine("Final Mile Tracking Response: " + finalMileTrackingResponse.ToString());
+            TestContext.WriteLine("Final Mile Tracking Response: " + finalMileTrackingResponse.ToString());
         }
     }
 }

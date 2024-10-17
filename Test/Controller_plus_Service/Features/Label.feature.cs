@@ -21,12 +21,14 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Label Generation")]
+    [NUnit.Framework.CategoryAttribute("Amazon")]
     public partial class LabelGenerationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Amazon"};
         
 #line 1 "Label.feature"
 #line hidden
@@ -74,13 +76,13 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate a label successfully")]
-        public void GenerateALabelSuccessfully()
+        [NUnit.Framework.DescriptionAttribute("Generate label")]
+        public void GenerateLabel()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate a label successfully", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 2
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate label", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 3
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -90,6 +92,15 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
+#line 4
+    testRunner.Given("I have a valid JWT token for shipment service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 5
+    testRunner.When("User hit label generation api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 6
+    testRunner.Then("the label response should contain the expected \'ams\' ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

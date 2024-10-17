@@ -1,0 +1,69 @@
+name: E2E Tests
+
+on:
+  push:master
+  pull_request:master
+  repository_dispatch:
+    types: [on-demand-test] 
+  
+  workflow_dispatch:
+    inputs:
+      api-environment:
+        description: "Select the environment"
+        type: choice
+        default: "PMS_E2E"
+        required: false
+        options:
+          -PMS_E2E
+          MLO_E2E
+          MSP_E2E
+          CUSTOM_E2E
+          MTS_E2E
+          GTS_E2E
+
+
+jobs:
+  test:
+    timeout-minutes: 30
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-NET@v8
+        with:
+          NET-version: net8.0
+
+      - name: Install dependencies
+        run:dotnet test
+
+      - name: Run SpecFlow tests
+        env:
+          ENVIRONMENT: ${{ github.event.inputs.api-environment || inputs.api-environment}}
+          CLIENTKEY: ${{ secrets.CLIENTKEY }}
+          AUTHORIZATION: ${{ secrets.AUTHORIZATION }}
+        run: |
+          echo api-environment is ++++++++++++++ ${{ github.event.inputs.api-environment || inputs.api-environment}}
+          npm test
+
+      - name: Deploy report page to Github Page
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: test-results
+
+      # Add a debug step to list the files in the root directory
+      - name: Debug - List contents of root directory
+        run: |
+          echo "Listing contents of root directory:"
+          ls -R .
+
+      # Upload the HTML report as an artifact
+      - name: Upload SpecFlow Reports as Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-Report
+          path: allure-results/
+          retention-days: 2

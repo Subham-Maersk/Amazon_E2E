@@ -21,12 +21,14 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Sort Service Assignment")]
+    [NUnit.Framework.CategoryAttribute("Amazon")]
     public partial class SortServiceAssignmentFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Amazon"};
         
 #line 1 "MSP.feature"
 #line hidden
@@ -74,13 +76,13 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Assign container to parcel")]
-        public void AssignContainerToParcel()
+        [NUnit.Framework.DescriptionAttribute("Containerization")]
+        public void Containerization()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign container to parcel", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 2
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Containerization", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 3
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -90,6 +92,15 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
+#line 4
+    testRunner.Given("user login for containerization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 5
+    testRunner.When("assign the container to parcel with barcode \"container\" and \"barcode\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 6
+    testRunner.Then("User receive successful response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

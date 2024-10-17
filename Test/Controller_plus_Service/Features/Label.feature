@@ -1,7 +1,6 @@
+@Amazon
 Feature: Label Generation
-  Scenario: Generate a label successfully
-    #Given I have a valid JWT token for shipment service
-    #And I have a label request JSON file at "Test_Access_Data_Layer/labelRequest.json"
-    #When I generate a label using the label generator service
-    #Then the label should be generated successfully
-    #And the label response should contain the expected 'ams' ID
+  Scenario: Generate label 
+    Given I have a valid JWT token for shipment service
+    When User hit label generation api
+    Then the label response should contain the expected 'ams' ID

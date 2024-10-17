@@ -1,15 +1,22 @@
+using System.IO;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using Services;
 using Newtonsoft.Json.Linq;
+using Allure.Commons;
+using Allure.NUnit.Attributes;
 
 [Binding]
+[Category("Amazon")] 
+[AllureSuite("GTS")]
+[AllureSubSuite("Label_Generation")]
 public class LabelGeneratorServiceSteps
 {
     private LabelGeneratorService _labelGeneratorService;
     private string _jwtToken;
     private JToken _labelResponse;
+    private string _containerId; 
 
     public LabelGeneratorServiceSteps()
     {
@@ -17,38 +24,35 @@ public class LabelGeneratorServiceSteps
     }
 
     [Given(@"I have a valid JWT token for shipment service")]
+    [AllureTag("Amazon")]
     public async Task GivenIHaveAValidJwtTokenForShipmentService()
     {
         _jwtToken = await AuthService.GetJwtToken();
         Assert.IsNotNull(_jwtToken, "Failed to retrieve JWT token.");
     }
 
-    [Given(@"I have a label request JSON file at ""(.*)""")]
-    public void GivenIHaveALabelRequestJsonFileAt(string filePath)
+    [When(@"User hit label generation api")]
+    [AllureTag("Amazon")]
+
+    public async Task WhenUserHitLabelGenerationApi()
     {
+        string filePath = "Test_Access_Data_Layer/labelRequest.json";
         Assert.IsTrue(File.Exists(filePath), "Label request JSON file not found.");
-    }
 
-    [When(@"I generate a label using the label generator service")]
-    public async Task WhenIGenerateALabelUsingTheLabelGeneratorService()
-    {
-        _labelResponse = await _labelGeneratorService.GenerateLabelAsync("Test_Access_Data_Layer/labelRequest.json", _jwtToken);
+        _labelResponse = await _labelGeneratorService.GenerateLabelAsync(filePath, _jwtToken);
         Assert.IsNotNull(_labelResponse, "Label generation failed.");
-    }
 
-    [Then(@"the label should be generated successfully")]
-    public void ThenTheLabelShouldBeGeneratedSuccessfully()
-    {
-        Assert.IsNotNull(_labelResponse, "Label response is null.");
-        TestContext.WriteLine("Label Generation Response: " + _labelResponse.ToString());
+        _containerId = ExtractIdFromLabelResponse(_labelResponse);
+        Assert.IsNotNull(_containerId, "Extracted Container ID is null.");
     }
 
     [Then(@"the label response should contain the expected 'ams' ID")]
-    public void ThenTheLabelResponseShouldContainTheExpectedAmslaxId()
+    [AllureTag("Amazon")]
+
+    public void ThenTheLabelResponseShouldContainTheExpectedAmsId()
     {
-        string extractedId = ExtractIdFromLabelResponse(_labelResponse);
-        Assert.IsNotNull(extractedId, "No ID starting with 'ams' found in the label response.");
-        TestContext.WriteLine("Extracted ID: " + extractedId);
+        Assert.IsNotNull(_containerId, "No ID starting with 'ams' found in the label response.");
+        TestContext.WriteLine("Extracted Container ID: " + _containerId);
     }
 
     private string ExtractIdFromLabelResponse(JToken labelResponse)
@@ -61,12 +65,12 @@ public class LabelGeneratorServiceSteps
                 if (url.Contains("ams"))
                 {
                     var startIndex = url.IndexOf("ams");
-                    var endIndex = url.IndexOf('.', startIndex); 
+                    var endIndex = url.IndexOf('.', startIndex);
                     if (endIndex == -1) endIndex = url.Length;
                     return url.Substring(startIndex, endIndex - startIndex);
                 }
             }
         }
-        return null;
+        return null; 
     }
 }

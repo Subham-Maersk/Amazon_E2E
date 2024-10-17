@@ -21,12 +21,14 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MTS Data Update")]
+    [NUnit.Framework.CategoryAttribute("Amazon")]
     public partial class MTSDataUpdateFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Amazon"};
         
 #line 1 "MTS.feature"
 #line hidden
@@ -74,12 +76,12 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Update data with valid API key and JSON payload")]
-        public void UpdateDataWithValidAPIKeyAndJSONPayload()
+        [NUnit.Framework.DescriptionAttribute("Delivery to customer")]
+        public void DeliveryToCustomer()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update data with valid API key and JSON payload", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delivery to customer", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 3
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -90,6 +92,15 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
+#line 4
+  testRunner.Given("User login usps api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 5
+  testRunner.When("User update data using the MTS API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 6
+  testRunner.Then("User should receive a success response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

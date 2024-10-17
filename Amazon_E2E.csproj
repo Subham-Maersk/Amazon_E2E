@@ -27,6 +27,7 @@
     <None Update="Test_Access_Data_Layer\mts_credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,7 @@
 
   <ItemGroup>
     <!-- Add Playwright and testing-related packages -->
+    <PackageReference Include="Allure.NUnit" Version="2.12.1" />
     <PackageReference Include="Microsoft.Playwright" Version="1.47.0" />
     <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.47.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
@@ -43,8 +45,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="SpecFlow" Version="3.9.74" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
-    <PackageReference Include="NUnit.Allure" Version="0.2.3" />
     <PackageReference Include="Allure.Commons" Version="2.3.61.1" />
+    <PackageReference Include="Allure.NUnit" Version="2.12.1" />
   </ItemGroup>
 
 </Project>

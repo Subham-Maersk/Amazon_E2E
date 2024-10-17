@@ -21,12 +21,14 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Shipment Processing")]
+    [NUnit.Framework.CategoryAttribute("Amazon")]
     public partial class ShipmentProcessingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Amazon"};
         
 #line 1 "PMS.feature"
 #line hidden
@@ -74,13 +76,13 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User logs in and validates shipment creation")]
-        public void UserLogsInAndValidatesShipmentCreation()
+        [NUnit.Framework.DescriptionAttribute("User validates shipment creation")]
+        public void UserValidatesShipmentCreation()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User logs in and validates shipment creation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User validates shipment creation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 4
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -90,27 +92,27 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
-#line 4
-    testRunner.Given("the user provides valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 5
-    testRunner.When("the user submits the login request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Given("the user login for manifest creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
-    testRunner.Then("the user should receive a JWT token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When("the user validates the shipment creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 7
+    testRunner.Then("the user should receive a validation response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User validates the shipment creation")]
-        public void UserValidatesTheShipmentCreation()
+        [NUnit.Framework.DescriptionAttribute("User retrieves final mile tracking information")]
+        public void UserRetrievesFinalMileTrackingInformation()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User validates the shipment creation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User retrieves final mile tracking information", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 10
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -120,6 +122,12 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
+#line 11
+    testRunner.When("the user retrieves the final mile tracking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+    testRunner.Then("User get final mile tracking", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

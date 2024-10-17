@@ -21,12 +21,14 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("GTS Authentication and Tracking")]
+    [NUnit.Framework.CategoryAttribute("Amazon")]
     public partial class GTSAuthenticationAndTrackingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Amazon"};
         
 #line 1 "GTS.feature"
 #line hidden
@@ -80,7 +82,7 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully retrieve a JWT token and package barcode", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 3
+#line 4
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -90,6 +92,18 @@ namespace Amazon_E2E.Test.Controller_Plus_Service.Features
             else
             {
                 this.ScenarioStart();
+#line 5
+    testRunner.Given("I have valid credentials for GTS login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 6
+    testRunner.When("I request a JWT token from GTS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 7
+    testRunner.Then("I should receive a valid GTS JWT token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 8
+    testRunner.Given("I have a valid GTS JWT token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
